@@ -1,4 +1,10 @@
 import React from 'react'
+import {
+    InputGroup,
+    InputGroupAddon,
+    Button,
+    Input
+} from 'reactstrap'
 
 const AddTodo = props => {
     const { state, dispatch } = props
@@ -14,12 +20,19 @@ const AddTodo = props => {
 
     return (
         <div>
-            <input
-                value={state.currentText}
-                onChange={onChangeHandler}
-            />
-            <button onClick={onClickHandler}>add todo</button>
-            <button onClick={() => dispatch({ type: "PURGE_COMPLETED" })}>remove completed</button>
+            <InputGroup>
+                <Input
+                    className="item-bar"
+                    value={state.currentText}
+                    onChange={onChangeHandler}
+                />
+                <InputGroupAddon addonType="prepend">
+                    <Button outline onClick={onClickHandler}>add todo</Button>
+                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">
+                    <Button outline onClick={() => dispatch({ type: "PURGE_COMPLETED" })}>remove completed</Button>
+                </InputGroupAddon>
+            </InputGroup>
         </div>
     )
 }

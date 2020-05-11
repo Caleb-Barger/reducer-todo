@@ -1,4 +1,8 @@
 import React from 'react'
+import {
+    ListGroupItem,
+    ListGroupItemText
+} from 'reactstrap'
 
 const Todo = props => {
     const { todo, dispatch } = props
@@ -8,10 +12,12 @@ const Todo = props => {
         dispatch({ type: "TOGGLE_ITEM", payload: todo.name })
     }
     return (
-        <h1
-            onClick={(onClickHandler)}
-            className={todo.toggled ? 'todoItem toggled' : 'todoItem'}
-        >{todo.name}</h1>
+        <ListGroupItem className="list-item">
+            <ListGroupItemText
+                onClick={(onClickHandler)}
+                className={todo.toggled ? 'todo-text toggled' : 'todo-text'}
+            >{todo.name}</ListGroupItemText>
+        </ListGroupItem>
     )
 }
 

@@ -1,3 +1,21 @@
+.wrapper {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 90%;
+}
+
 .toggled {
   text-decoration: line-through;
+}
+
+.list-item {
+  display: flex;
+  /* margin: 0 auto; */
+  margin-top: 1%;
+  justify-content: flex-start;
+  /* width: 67%; */
+}
+
+.todo-text {
+  font-size: 1.8rem;
 }
