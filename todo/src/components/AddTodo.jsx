@@ -1,38 +1,15 @@
-import React, { useState, useReducer } from 'react'
+import React from 'react'
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "UPDATE_CURRENT_VALUE":
-            return {
-                ...state,
-                currentText: action.payload
-            }
-        case "ADD_VALUE":
-            const todoListCopy = [...state.todoList]
-            todoListCopy.push(state.currentText)
-            return {
-                ...state,
-                todoList: [...todoListCopy]
-            }
-        default:
-            return state
-    }
-}
-
-const initalState = {
-    currentText: "",
-    todoList: [],
-}
-
-const AddTodo = () => {
-    const [state, dispatch] = useReducer(reducer, initalState)
+const AddTodo = props => {
+    const { state, dispatch } = props
 
     const onChangeHandler = e => {
-        dispatch({ type: "UPDATE_CURRENT_VALUE", payload: e.target.value })
+        dispatch({ type: "UPDATE_CURRENT_TEXT", payload: e.target.value })
     }
 
     const onClickHandler = e => {
         dispatch({ type: "ADD_VALUE" })
+        dispatch({ type: "RESET_CURRENT_TEXT" })
     }
 
     return (
@@ -42,6 +19,7 @@ const AddTodo = () => {
                 onChange={onChangeHandler}
             />
             <button onClick={onClickHandler}>add todo</button>
+            <button onClick={() => dispatch({ type: "PURGE_COMPLETED" })}>remove completed</button>
         </div>
     )
 }
